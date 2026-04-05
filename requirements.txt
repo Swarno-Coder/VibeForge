@@ -1,0 +1,5 @@
+google-genai
+rich
+pydantic
+python-dotenv
+requests

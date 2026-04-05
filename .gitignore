@@ -1,0 +1,6 @@
+.env
+.env.local
+allocation_log.txt
+
+/venv
+/__pycache__

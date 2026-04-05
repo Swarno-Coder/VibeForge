@@ -1,0 +1,13 @@
+Available Models, Rate Limit Per Minute (RPM)
+models/gemma-3-1b-it, 30
+models/gemma-3-4b-it, 30
+models/gemma-3-12b-it, 30
+models/gemma-3-27b-it, 30
+models/gemma-3n-e2b-it, 30
+models/gemma-3n-e4b-it, 30
+models/gemma-4-26b-a4b-it, 15
+models/gemma-4-31b-it, 15
+models/gemini-2.5-flash, 5
+models/gemini-2.5-flash-lite, 10
+models/gemini-3.1-flash-lite-preview, 15
+models/gemini-3-flash-preview, 5
