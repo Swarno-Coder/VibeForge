@@ -1,0 +1,103 @@
+MULTI-AGENT SYNTHESIS QUALITY RUBRIC
+=====================================
+
+PURPOSE
+-------
+This rubric defines the quality criteria the Final Synthesizer (Judge) agent
+should use when evaluating and combining outputs from multiple specialist agents.
+
+EVALUATION DIMENSIONS
+----------------------
+
+1. FACTUAL ACCURACY (Weight: 30%)
+   Score 5: All claims are factually correct and supported by evidence
+   Score 4: Nearly all claims correct; minor inaccuracies that don't affect conclusions
+   Score 3: Some factual errors present but main conclusions still valid
+   Score 2: Multiple factual errors that undermine credibility
+   Score 1: Pervasive factual errors or fabricated information
+
+   Red flags to check:
+   - Made-up statistics or fabricated studies
+   - Incorrect dates, names, or figures
+   - Outdated information presented as current
+   - Logical contradictions between claimed facts
+
+2. COMPLETENESS (Weight: 25%)
+   Score 5: All aspects of the original query are thoroughly addressed
+   Score 4: Most aspects covered; minor gaps that don't affect usefulness
+   Score 3: Key aspects covered but some significant gaps
+   Score 2: Major aspects of the query left unaddressed
+   Score 1: Only superficially addresses the query
+
+   Checklist:
+   - Does the response directly answer each part of the user's question?
+   - Are all requested deliverables (reports, analyses, code) included?
+   - Are edge cases and caveats mentioned?
+
+3. COHERENCE & CONSISTENCY (Weight: 20%)
+   Score 5: All agent outputs are smoothly integrated; no contradictions
+   Score 4: Mostly coherent; minor inconsistencies resolved
+   Score 3: Some contradictions between agents, partially resolved
+   Score 2: Significant contradictions left unresolved
+   Score 1: Chaotic, contradictory, or incoherent synthesis
+
+   Key checks:
+   - Do different agents' outputs contradict each other?
+   - If so, does the synthesis acknowledge and resolve the contradiction?
+   - Is the narrative flow logical and well-structured?
+
+4. ACTIONABILITY (Weight: 15%)
+   Score 5: Clear, specific, implementable recommendations
+   Score 4: Good recommendations with minor specificity gaps
+   Score 3: General recommendations that need further detailing
+   Score 2: Vague suggestions without clear implementation path
+   Score 1: No actionable output
+
+5. FORMATTING & PRESENTATION (Weight: 10%)
+   Score 5: Professional formatting with clear sections, headers, and emphasis
+   Score 4: Well-formatted with minor inconsistencies
+   Score 3: Adequate formatting but could be improved
+   Score 2: Poor formatting that hinders readability
+   Score 1: Unformatted wall of text
+
+CONTRADICTION RESOLUTION PROTOCOLS
+------------------------------------
+When multiple agents produce conflicting information:
+
+Protocol 1 — SOURCE HIERARCHY
+  Priority: Agents with google_search > agents using training knowledge
+  Rationale: Real-time data is more likely current and accurate
+
+Protocol 2 — CONSENSUS WEIGHTING
+  If 3 out of 4 agents agree on a data point, the consensus is likely correct.
+  The dissenting agent's view should be noted as an alternative perspective.
+
+Protocol 3 — EXPLICIT UNCERTAINTY
+  When contradictions cannot be resolved, the synthesis should explicitly state:
+  "Agent outputs conflict on [topic]. [Agent A] reports [X] while [Agent B]
+  reports [Y]. The discrepancy may be due to [reason]. We recommend [action]
+  to verify."
+
+SYNTHESIS STRUCTURE TEMPLATE
+-------------------------------
+The final synthesis should follow this structure:
+
+1. EXECUTIVE SUMMARY (2-3 paragraphs)
+   - Key findings and recommendations
+   - Confidence level (high/medium/low)
+
+2. DETAILED FINDINGS
+   - Organized by topic/domain, not by agent
+   - Cite which agent produced each finding
+
+3. RISK FACTORS & CAVEATS
+   - Known limitations of the analysis
+   - Areas where agent knowledge may be incomplete
+
+4. ACTIONABLE RECOMMENDATIONS
+   - Numbered, specific, time-bound recommendations
+   - Priority ranking (immediate/short-term/long-term)
+
+5. SOURCES & METHODOLOGY
+   - List agents involved and their roles
+   - Note any google_search grounding used

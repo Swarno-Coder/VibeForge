@@ -1,0 +1,96 @@
+GLOBAL FOOD SECURITY SITUATION REPORT (2026)
+==============================================
+
+OVERVIEW
+--------
+Global food security remains under severe stress in 2026, driven by
+the ongoing Russia-Ukraine conflict, climate-induced crop failures,
+and supply chain disruptions. The FAO Food Price Index averaged 142
+points in Q1 2026. An estimated 345 million people face acute food
+insecurity across 82 countries.
+
+RUSSIA-UKRAINE CONFLICT IMPACT ON GRAIN EXPORTS
+-------------------------------------------------
+Pre-conflict (2021):
+  - Ukraine: World's 5th largest wheat exporter, 4th largest corn exporter
+  - Russia: World's largest wheat exporter
+  - Combined: 30% of global wheat exports, 20% of corn exports
+
+Current (2026):
+  - Black Sea Grain Initiative: Collapsed in July 2023, partially restored
+    via bilateral corridors in 2025
+  - Ukraine wheat exports: 14 million tons (down from 18M pre-war)
+  - Ukraine corn exports: 22 million tons (down from 27M pre-war)
+  - Russia wheat exports: 48 million tons (record high, leveraging
+    sanctions-evasion shipping networks)
+  - Port infrastructure: Odesa port operating at 60% capacity
+  - Mine contamination: 30% of Ukraine farmland remains inaccessible
+
+CLIMATE CHANGE IMPACT ON RICE PRODUCTION (SOUTHEAST ASIA)
+-----------------------------------------------------------
+- El Niño 2025-2026 caused severe drought across Southeast Asia
+- Thailand (2nd largest rice exporter): Production down 15% in 2025
+  - Central Plains: water levels in key reservoirs at 40% capacity
+  - Government restricted rice cultivation to one crop/year in some regions
+- Vietnam (3rd largest rice exporter): Mekong Delta saltwater intrusion
+  - 30% of rice paddies affected by salinization
+  - Export ban on broken rice extended through 2026
+- India (largest rice exporter): Imposed 20% export duty on non-basmati rice
+  - Monsoon 2025 was 8% below normal
+  - Buffer stock drawdown to maintain domestic supply
+- Myanmar: Political instability disrupting farming operations
+  - Estimated 25% reduction in rice production
+
+STRATEGIC RESERVES
+-------------------
+- China: Estimated 200 million tons of grain reserves (world's largest)
+  - 50-60% of global rice reserves, 35% of global wheat reserves
+  - Strategic reserve information classified; estimates based on trade data
+- United States: Strategic grain reserves largely depleted since 2008
+  - Bill HR-4420 (2025) proposed rebuilding 60-day grain reserve (not passed)
+  - Private sector inventory: 45-day supply of wheat
+- India: 60 million tons public grain stock (FCI warehouses)
+  - Targeting 70M tons by 2027
+- EU: No centralized grain reserve; member state-level stocks vary
+
+REGIONS AT HIGHEST FAMINE RISK (2026)
+---------------------------------------
+1. Horn of Africa (Ethiopia, Somalia, South Sudan, Kenya)
+   - 25 million facing crisis-level food insecurity
+   - Consecutive failed rain seasons (6th in a row for parts of Somalia)
+   - Conflict in Ethiopia's Tigray region disrupting aid distribution
+
+2. Sahel Region (Burkina Faso, Mali, Niger, Chad)
+   - 12 million facing emergency food insecurity
+   - Jihadist insurgency restricting humanitarian access
+   - Pastoralist communities losing livestock to drought
+
+3. Afghanistan
+   - 23 million food insecure (55% of population)
+   - International aid reduced by 40% after Taliban governance disputes
+   - Wheat production down 20% due to drought
+
+4. Yemen
+   - 17 million food insecure despite partial ceasefire
+   - Currency collapse exacerbating import costs
+   - Port capacity at 50% (Hodeidah still constrained)
+
+EMERGENCY MEASURES RECOMMENDED
+---------------------------------
+Short-term (0-6 months):
+  1. Scale up WFP emergency food distributions in Horn of Africa and Sahel
+  2. Release strategic reserves from China and India if humanitarian corridors secured
+  3. Temporary export restriction moratorium among G20 nations
+  4. Emergency seed distribution for next planting season
+
+Medium-term (6-24 months):
+  1. Invest in climate-resilient crop varieties (drought-tolerant rice, heat-resistant wheat)
+  2. Expand irrigation infrastructure in Sub-Saharan Africa
+  3. Rebuild US strategic grain reserve (60-day target)
+  4. Diversify global grain trade routes to reduce Black Sea dependency
+
+Long-term (2-10 years):
+  1. Scale vertical farming and precision agriculture in food-insecure regions
+  2. Reform WTO agricultural trade rules to prevent hoarding
+  3. International food security treaty with binding reserve requirements
+  4. Shift diets: incentivize plant-based protein to reduce grain-to-meat conversion losses

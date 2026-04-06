@@ -1,0 +1,85 @@
+ELECTRIC VEHICLE MARKET IN INDIA — COMPREHENSIVE ANALYSIS (2026)
+=================================================================
+
+MARKET OVERVIEW
+---------------
+India's electric vehicle market has experienced exponential growth, reaching
+$7.5 billion in 2026 (up from $3.2 billion in 2024). The government's target
+of 30% EV penetration by 2030 is driving aggressive policy and infrastructure
+investment.
+
+SALES FIGURES (2025-2026)
+--------------------------
+- Total EV sales FY2025-26: 2.8 million units
+  - Two-wheelers: 2.1 million (75%)
+  - Three-wheelers: 380,000 (13.6%)
+  - Four-wheelers (passenger): 280,000 (10%)
+  - Commercial vehicles: 40,000 (1.4%)
+- Year-over-year growth: 48% overall
+- EV penetration rate: ~8% of total vehicle sales (up from 5.2% in FY2024-25)
+
+MAJOR MANUFACTURERS — MARKET SHARE (Four-wheelers)
+----------------------------------------------------
+1. Tata Motors: 62% — Nexon EV, Punch EV, Curvv EV
+2. MG Motor (SAIC): 11% — ZS EV, Comet EV
+3. Mahindra Electric: 10% — XUV400, BE 6
+4. Hyundai: 8% — Creta EV, Ioniq 5
+5. BYD India: 5% — Atto 3, Seal
+6. Others (Citroen, BMW, Mercedes): 4%
+
+GOVERNMENT INCENTIVES
+----------------------
+1. FAME III Scheme (2024-2027): ₹10,000 crore ($1.2B) subsidy allocation
+   - Demand incentives: ₹15,000/kWh for electric two-wheelers
+   - ₹10,000/kWh for electric four-wheelers (capped at 20% of vehicle cost)
+2. PM E-DRIVE Scheme: ₹10,900 crore for EV adoption and charging infra
+3. State-level incentives:
+   - Delhi: Road tax waiver + ₹1.5 lakh purchase subsidy
+   - Maharashtra: 15% price subsidy + registration fee waiver
+   - Gujarat: ₹1.5 lakh subsidy for electric four-wheelers
+   - Karnataka: 100% road tax exemption
+4. Production-Linked Incentive (PLI) for batteries:
+   - ₹18,100 crore for Advanced Chemistry Cell (ACC) manufacturing
+   - Beneficiaries: Reliance New Energy, Ola Electric, Amara Raja
+
+CHARGING INFRASTRUCTURE
+-------------------------
+- Public charging stations: ~12,000 (as of March 2026)
+- Target: 46,000 stations by 2030
+- Major operators: Tata Power (3,500+ stations), BPCL, Ather Grid
+- Highway corridors: 2,500+ stations on national highways
+- Challenge: 78% of stations are in top 10 cities; rural coverage is minimal
+
+BATTERY MANUFACTURING
+----------------------
+- Domestic cell manufacturing at early stage
+- Ola Gigafactory (Tamil Nadu): 20 GWh capacity, Phase 1 operational
+- Reliance-Samsung SDI JV: 50 GWh announced, construction underway
+- Current battery import dependency: ~85% (primarily from China, South Korea)
+- Battery cost in India: $115/kWh (vs global average $100/kWh)
+
+SWOT ANALYSIS FOR FOREIGN INVESTOR
+------------------------------------
+STRENGTHS:
+- World's 3rd largest auto market (4.7M vehicles/year)
+- Strong government policy support and subsidies
+- Young, tech-savvy population (median age 28)
+- Rapidly falling battery costs
+
+WEAKNESSES:
+- Charging infrastructure gaps (especially rural/semi-urban)
+- High import dependency for batteries and components
+- Grid reliability issues in several states
+- Price-sensitive market (average car budget: ₹8-12 lakh)
+
+OPPORTUNITIES:
+- Two/three-wheeler segment is massive and underserved
+- Fleet electrification (ride-hailing, logistics) growing rapidly
+- Battery manufacturing PLI incentives for early movers
+- Export hub potential for right-hand-drive EVs
+
+THREATS:
+- Chinese manufacturers (BYD, Great Wall) offering aggressive pricing
+- Policy uncertainty post-2027 (FAME III expiry)
+- Lithium supply constraints (India has limited reserves)
+- Grid capacity challenges with mass EV adoption

@@ -4,6 +4,10 @@ Executor — dispatches agent tasks through the ResourcePool.
 Agents are sorted by criticality (highest first) and submitted to a
 ThreadPoolExecutor. The ResourcePool handles model selection, semaphore-
 based mutual exclusion, HashMap logging, and retry logic.
+
+RAG Integration: Before dispatching, each agent's task is enriched with
+semantically relevant knowledge from the Vector RAG (ChromaDB + sentence-transformers).
+This happens BEFORE pool interaction — the ResourcePool is NOT modified.
 """
 
 from google import genai
@@ -19,6 +23,11 @@ def execute_plan(clients: dict[int, genai.Client], plan: AgentPlan, pool: Resour
     """
     Execute all agents in the plan concurrently via the ResourcePool.
 
+    RAG Integration: Each agent's task text is enriched with semantically
+    relevant documents from the Vector retriever before being submitted to
+    the pool's execute_with_retry(). This adds domain-specific grounding
+    without touching any pool logic.
+
     Args:
         clients: dict of {key_index: genai.Client}
         plan:    the AgentPlan from the planner
@@ -32,6 +41,28 @@ def execute_plan(clients: dict[int, genai.Client], plan: AgentPlan, pool: Resour
         key=lambda a: getattr(a, "criticality", 5),
         reverse=True,
     )
+
+    # ── RAG: Enrich each agent's task with Vector-retrieved knowledge ──
+    from rag_engine import get_executor_rag, format_rag_context
+    retriever = get_executor_rag()
+
+    console.print("\n[bold blue]═══ Enriching Agents with RAG Context ═══[/bold blue]")
+    for agent in sorted_agents:
+        rag_docs = retriever.retrieve(agent.task, top_k=3)
+        if rag_docs:
+            rag_ctx = format_rag_context(rag_docs)
+            agent.task = (
+                agent.task
+                + "\n\n=== RELEVANT KNOWLEDGE (from internal knowledge base — use to ground your analysis) ===\n"
+                + rag_ctx
+                + "\n=== END RELEVANT KNOWLEDGE ==="
+            )
+            console.print(
+                f"[dim]  📚 {agent.name}: enriched with {len(rag_docs)} RAG docs "
+                f"(top score: {rag_docs[0].score:.3f})[/dim]"
+            )
+        else:
+            console.print(f"[dim]  📚 {agent.name}: no relevant RAG docs found[/dim]")
 
     console.print("\n[bold blue]═══ Starting Priority-Queued Concurrent Agent Execution ═══[/bold blue]")
     console.print(f"[dim]Agents queued: {len(sorted_agents)} | "
@@ -64,3 +95,4 @@ def execute_plan(clients: dict[int, genai.Client], plan: AgentPlan, pool: Resour
     pool.save_log_to_file()
 
     return accumulated_context
+

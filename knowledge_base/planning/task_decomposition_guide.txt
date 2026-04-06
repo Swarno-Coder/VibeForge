@@ -1,0 +1,55 @@
+TASK DECOMPOSITION GUIDE FOR AI MULTI-AGENT PLANNING
+=====================================================
+
+1. PRINCIPLE OF INDEPENDENCE
+   When breaking a complex task into sub-tasks for concurrent agent execution,
+   each sub-task MUST be completely independent. No agent should require the
+   output of another agent to begin its work. If a dependency exists, the
+   dependent tasks must be merged into a single agent's scope.
+
+2. CRITICALITY SCORING FRAMEWORK
+   - Score 9-10 (CRITICAL): Tasks requiring deep reasoning, multi-step logic,
+     code generation, or synthesis across multiple domains. These tasks should
+     be assigned to the most capable models (Gemini 3.x tier).
+   - Score 7-8 (HIGH): Tasks requiring solid analysis, structured output,
+     or moderate reasoning. Suitable for Gemini 2.5 tier models.
+   - Score 4-6 (MEDIUM): Tasks involving research summaries, data extraction,
+     or single-domain analysis. Suitable for Gemma 4 tier models.
+   - Score 1-3 (LOW): Repetitive tasks, simple lookups, formatting, or
+     template-based generation. Suitable for Gemma 3 tier models.
+
+3. AGENT NAMING CONVENTIONS
+   Use descriptive, role-based names:
+   - "Market_Researcher" not "Agent_1"
+   - "Technical_Analyst" not "Task_Handler"
+   - "Policy_Reviewer" not "Agent_3"
+
+4. TOOL ASSIGNMENT RULES
+   - Assign 'google_search' only when the task genuinely requires real-time
+     or very recent information (e.g., current prices, breaking news).
+   - Do NOT assign 'google_search' for historical analysis, general knowledge,
+     or well-established facts that models already know.
+   - Multiple agents can use 'google_search' simultaneously.
+
+5. OPTIMAL AGENT COUNT
+   - For simple queries: 2-3 agents
+   - For moderate queries: 3-5 agents
+   - For complex multi-domain queries: 5-8 agents
+   - Avoid exceeding 10 agents — diminishing returns and increased latency.
+
+6. COMMON DECOMPOSITION PATTERNS
+   Pattern A — RESEARCH + ANALYZE + SYNTHESIZE
+     Agent 1: Research Domain A (crit=5-7)
+     Agent 2: Research Domain B (crit=5-7)
+     Agent 3: Cross-domain Analysis (crit=8-9)
+
+   Pattern B — MULTI-REGION COMPARISON
+     Agent 1: Region A Analysis (crit=5)
+     Agent 2: Region B Analysis (crit=5)
+     Agent 3: Comparative Framework Design (crit=7)
+
+   Pattern C — TECHNICAL + BUSINESS + RISK
+     Agent 1: Technical Feasibility (crit=8)
+     Agent 2: Market/Business Analysis (crit=7)
+     Agent 3: Risk Assessment (crit=6)
+     Agent 4: Regulatory Compliance Check (crit=5)

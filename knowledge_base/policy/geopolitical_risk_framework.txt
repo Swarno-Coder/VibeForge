@@ -1,0 +1,109 @@
+GEOPOLITICAL RISK ANALYSIS FRAMEWORK
+=======================================
+
+PURPOSE
+-------
+This framework provides structured methodology for assessing geopolitical
+risks affecting business operations, investment decisions, and strategic planning.
+
+RISK ASSESSMENT DIMENSIONS
+-----------------------------
+
+1. POLITICAL STABILITY INDEX
+   Measure: Government stability, policy predictability, regime change risk
+   Data sources: Freedom House, Economist Intelligence Unit, World Bank WGI
+   Scale: 1 (highly unstable) to 10 (highly stable)
+
+   Current assessments (Q1 2026):
+   - United States: 7.2 (polarization risk, but institutional resilience)
+   - European Union: 7.8 (stable institutions, far-right political gains)
+   - China: 6.5 (political stability, economic slowdown concerns)
+   - India: 7.0 (strong economic growth, religious tension risk)
+   - Russia: 4.5 (sanctions impact, prolonged conflict)
+   - Middle East (aggregate): 4.2 (Iran-Israel tensions, Gulf stability)
+
+2. ECONOMIC RISK FACTORS
+   - Currency stability and convertibility
+   - Inflation rate and central bank credibility
+   - Trade balance and foreign reserve levels
+   - Sovereign debt sustainability
+   - Sanctions exposure (primary and secondary)
+
+3. SECURITY RISK FACTORS
+   - Active armed conflicts
+   - Terrorism threat level
+   - Cyber attack frequency and sophistication
+   - Border disputes and territorial claims
+   - Nuclear proliferation concerns
+
+4. REGULATORY & LEGAL RISK
+   - Rule of law strength
+   - Intellectual property protection
+   - Contract enforcement reliability
+   - Ease of doing business ranking
+   - Foreign investment restrictions
+
+SCENARIO PLANNING METHODOLOGY
+--------------------------------
+For each geopolitical risk, develop three scenarios:
+
+Base Case (60% probability):
+  Current trends continue with incremental changes
+  Planning horizon: 1-3 years
+
+Upside Scenario (20% probability):
+  Positive developments (peace agreements, trade deals, reforms)
+  Planning horizon: 2-5 years
+
+Downside Scenario (20% probability):
+  Escalation (conflict, sanctions, regime change, economic crisis)
+  Planning horizon: 1-2 years
+
+CURRENT HOT SPOTS (2026)
+---------------------------
+1. Taiwan Strait: Elevated military posturing, no active conflict
+   - Risk: Trade disruption, semiconductor supply chain
+   - Trigger: Unilateral independence declaration or Chinese military exercises
+
+2. Iran-Israel-US: Active tensions following 2024-2025 escalation
+   - Risk: Oil supply disruption, regional instability
+   - Trigger: Nuclear program milestones, proxy conflict escalation
+
+3. Ukraine-Russia: Frozen conflict with periodic escalation
+   - Risk: European energy security, grain supply, sanctions cascade
+   - Trigger: Major territorial changes, NATO involvement escalation
+
+4. South China Sea: Maritime territorial disputes (China, Philippines, Vietnam)
+   - Risk: Trade route disruption ($5.3 trillion annual shipping)
+   - Trigger: Artificial island militarization, fishing fleet incidents
+
+5. Sahel Region: Military coups, Wagner/Africa Corps presence
+   - Risk: Resource access (uranium, gold), migration flows
+   - Trigger: Complete Western disengagement, jihadist resurgence
+
+RISK REPORT OUTPUT TEMPLATE
+------------------------------
+When producing a geopolitical risk report, include:
+
+1. SITUATION OVERVIEW
+   - Current status and recent developments (48 hours)
+   - Key actors and their stated positions
+   - Timeline of escalation/de-escalation events
+
+2. RISK MATRIX
+   | Risk Factor | Probability | Impact | Risk Score |
+   |-------------|------------|--------|------------|
+   | [Factor]    | 1-5        | 1-5    | P × I      |
+
+3. SCENARIO ANALYSIS (Base/Upside/Downside for each key risk)
+
+4. BUSINESS IMPACT ASSESSMENT
+   - Supply chain disruption (probability, duration, alternatives)
+   - Market access impact (tariffs, sanctions, restrictions)
+   - Financial impact (currency, cost of capital, asset values)
+   - Operational risk (staff safety, facility security)
+
+5. RECOMMENDED ACTIONS
+   - Immediate (0-30 days): Monitoring triggers and escalation indicators
+   - Short-term (1-6 months): Contingency plans and hedging strategies
+   - Long-term (6-24 months): Strategic reorientation and diversification

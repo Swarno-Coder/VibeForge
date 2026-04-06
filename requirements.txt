@@ -3,3 +3,5 @@ rich
 pydantic
 python-dotenv
 requests
+chromadb
+sentence-transformers

@@ -1,0 +1,80 @@
+GLOBAL SEMICONDUCTOR SUPPLY CHAIN ANALYSIS (2026)
+===================================================
+
+OVERVIEW
+--------
+The global semiconductor industry is valued at approximately $680 billion in 2026,
+with continued geopolitical tensions reshaping supply chain strategies worldwide.
+
+KEY MANUFACTURING HUBS
+-----------------------
+1. TAIWAN (TSMC)
+   - Market share: ~56% of global foundry revenue
+   - Leading-edge: 2nm production started Q1 2026
+   - Risk: Cross-strait tensions with China remain elevated
+   - TSMC Arizona Fab 1: 4nm production operational since 2025
+   - TSMC Arizona Fab 2: 2nm under construction, expected 2027
+
+2. SOUTH KOREA (Samsung Foundry)
+   - Market share: ~16% of global foundry revenue
+   - 2nm GAA (Gate-All-Around) production started late 2025
+   - Samsung Taylor, Texas fab: 4nm/5nm, operational mid-2026
+   - Risk: North Korea tensions, energy cost inflation
+
+3. UNITED STATES
+   - Intel Foundry Services: Expanding under CHIPS Act ($39B allocation)
+   - Intel Ohio: Four fabs under construction, 2nm target capacity by 2027
+   - GlobalFoundries: Mature node specialist (12nm+) based in Vermont/New York
+   - Total CHIPS Act disbursed: $28.5B as of Q1 2026
+
+4. EUROPEAN UNION
+   - European Chips Act: €43 billion total investment package
+   - Intel Magdeburg (Germany): Two fabs, construction underway
+   - STMicroelectronics + GlobalFoundries: 28nm FD-SOI fab in France
+   - Focus: automotive, industrial, IoT — not leading-edge
+
+5. JAPAN
+   - Rapidus: 2nm fab in Hokkaido, partnership with IBM
+   - JASM (TSMC joint venture): 12/16nm, operational since 2025
+   - Government subsidy: ¥4 trillion ($27B) for semiconductor revival
+
+CRITICAL RAW MATERIALS
+-----------------------
+- Neon gas: 45% from Ukraine (supply disrupted since 2022)
+  - Alternative sources in US and South Korea now cover 70% of deficit
+- Silicon wafers: ~70% from Shin-Etsu (Japan) and SUMCO (Japan)
+- Rare earth elements: China controls ~60% of mining, ~90% of processing
+- Photoresists: JSR (Japan), Tokyo Ohka (Japan) dominate EUV resists
+- ASML (Netherlands): Sole supplier of EUV lithography machines
+  - Backlog: 18+ months for High-NA EUV systems
+
+GEOPOLITICAL RISK FACTORS (2026)
+---------------------------------
+1. US-China chip export controls:
+   - US expanded restrictions in 2025 to include 7nm-capable equipment
+   - China's SMIC claims 5nm-equivalent production using multi-patterning DUV
+   - Huawei Kirin 9010 (2025) demonstrated China's workaround capabilities
+
+2. Taiwan contingency planning:
+   - Major fabless companies (Apple, NVIDIA, AMD) diversifying to US/Japan fabs
+   - "Silicon Shield" theory: Taiwan's chip dominance deters military action
+
+3. Trade bloc formation:
+   - "Chip 4 Alliance" (US, Japan, South Korea, Taiwan) coordinates policy
+   - EU pursuing "strategic autonomy" in mature node semiconductors
+
+INDUSTRY IMPACT BY SECTOR
+---------------------------
+- Consumer Electronics: Moderate risk. Diversified supply chains.
+- Automotive: HIGH risk. Relies on mature nodes (28-65nm) with limited alternative supply.
+- Defense/Aerospace: CRITICAL risk. Requires trusted fabs with security clearance.
+- AI/Data Center: Moderate risk. Leading-edge supply concentrated but NVIDIA/AMD diversifying.
+- EVs: HIGH risk. Power semiconductors (SiC, GaN) supply still constrained.
+
+RISK MITIGATION STRATEGIES
+----------------------------
+1. Dual-sourcing across geographies (minimum 2 fabs on different continents)
+2. Strategic inventory buffers (6-12 months for critical components)
+3. Design for manufacturability across multiple process nodes
+4. Long-term supply agreements (3-5 years) with capacity guarantees
+5. Investment in "chiplet" architectures for supply chain flexibility

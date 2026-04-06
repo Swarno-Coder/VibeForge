@@ -56,19 +56,31 @@ def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
     For Gemma models that don't support response_schema, falls back
     to plain text generation with JSON instruction in the prompt.
 
+    RAG Integration: Uses BM25 retrieval over planning templates to provide
+    the planner with relevant task decomposition patterns and agent role catalogs.
+
     Args:
         clients: {1: genai.Client, 2: genai.Client, ...}
         query:   the user's input query
     """
+    # ── RAG: Retrieve relevant planning context via BM25 ──────────────
+    from rag_engine import get_planner_rag, format_rag_context
+    rag_docs = get_planner_rag().retrieve(query, top_k=3)
+    rag_section = format_rag_context(rag_docs)
+    rag_note = f"\n    === REFERENCE KNOWLEDGE (from internal planning knowledge base) ===\n    {rag_section}\n    === END REFERENCE KNOWLEDGE ===\n" if rag_docs else ""
+
+    console.print(f"[dim]  📚 Planner RAG: retrieved {len(rag_docs)} relevant planning docs[/dim]")
+
     prompt = f"""
     You are an expert AI Planner. The user has provided the following query:
     '{query}'
-    
+    {rag_note}
     Your task is to break down this complex query into independent sub-tasks that AI agents can solve simultaneously.
     Define a list of agents. For each agent, provide a name, a detailed role, the specific task it must accomplish, the tools it might need, and assign a criticality score from 1-10 indicating how complex or important the specific task is.
     The agents will be executed CONCURRENTLY. They cannot depend on each other's outputs. You must make their tasks completely independent.
     Keep the plan as concise as possible but ensure it comprehensively addresses the user's query.
     If the task requires searching the internet, use the tool 'google_search'.
+    Use the reference knowledge above (if provided) to inform your planning decisions, agent roles, criticality scoring, and decomposition strategy.
     """
 
     # JSON-only prompt for models that don't support response_schema
