@@ -188,9 +188,10 @@ class VectorRetriever:
         ids = []
         documents = []
         metadatas = []
+        base_count = self._collection.count()
 
         for i, doc in enumerate(docs):
-            doc_id = f"doc_{self._collection.count() + i}"
+            doc_id = f"doc_{base_count + i}"
             ids.append(doc_id)
             documents.append(doc.content)
             # ChromaDB metadata values must be str, int, float, or bool
