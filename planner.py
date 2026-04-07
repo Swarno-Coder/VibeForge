@@ -64,13 +64,20 @@ def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
         query:   the user's input query
     """
     # ── RAG: Retrieve relevant planning context via BM25 ──────────────
-    from rag_engine import get_planner_rag, format_rag_context
-    rag_docs = get_planner_rag().retrieve(query, top_k=3)
-    rag_section = format_rag_context(rag_docs)
+    # Planner RAG is optional: if the RAG engine or its heavier dependencies
+    # are unavailable, continue planning without retrieval context.
+    rag_docs = []
+    rag_section = ""
+    try:
+        from rag_engine import get_planner_rag, format_rag_context
+        rag_docs = get_planner_rag().retrieve(query, top_k=3)
+        rag_section = format_rag_context(rag_docs)
+        console.print(f"[dim]  📚 Planner RAG: retrieved {len(rag_docs)} relevant planning docs[/dim]")
+    except Exception as exc:
+        console.print(
+            f"[dim]  📚 Planner RAG unavailable; continuing without planning knowledge base ({exc})[/dim]"
+        )
     rag_note = f"\n    === REFERENCE KNOWLEDGE (from internal planning knowledge base) ===\n    {rag_section}\n    === END REFERENCE KNOWLEDGE ===\n" if rag_docs else ""
-
-    console.print(f"[dim]  📚 Planner RAG: retrieved {len(rag_docs)} relevant planning docs[/dim]")
-
     prompt = f"""
     You are an expert AI Planner. The user has provided the following query:
     '{query}'
