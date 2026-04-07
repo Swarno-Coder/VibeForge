@@ -9,7 +9,6 @@ Produces four lists of Document objects:
   4. policy_docs      — shared across Executor and Judge RAG
 """
 
-import os
 from pathlib import Path
 from rag_engine import Document
 from rich.console import Console
