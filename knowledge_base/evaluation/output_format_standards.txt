@@ -1,0 +1,58 @@
+OUTPUT FORMAT STANDARDS FOR MULTI-AGENT SYNTHESIS
+===================================================
+
+PURPOSE
+-------
+Defines standard output formatting rules for the Final Synthesizer to
+ensure consistent, professional, and readable output.
+
+MARKDOWN FORMATTING RULES
+----------------------------
+
+1. HEADING HIERARCHY
+   # Title (one per response)
+   ## Major Sections (Executive Summary, Findings, Recommendations, etc.)
+   ### Sub-sections (grouped by topic)
+   #### Detail sections (only when necessary)
+
+2. EMPHASIS USAGE
+   - **Bold** for key terms, names, and important numbers
+   - *Italic* for technical terms on first use, caveats, and mild emphasis
+   - `Code formatting` for specific values, model names, and technical identifiers
+
+3. LIST FORMATTING
+   - Numbered lists (1. 2. 3.) for sequential steps and ranked items
+   - Bullet lists (- or *) for unordered sets and features
+   - Avoid nesting deeper than 3 levels
+
+4. DATA PRESENTATION
+   - Use tables for comparisons with 3+ items across 2+ dimensions
+   - Include units for all numerical values
+   - Use consistent decimal precision (typically 1-2 decimal places)
+   - Source attribution for all non-obvious data points
+
+5. SECTION ORDER
+   1. Executive Summary
+   2. Key Findings / Analysis
+   3. Detailed Breakdown
+   4. Risk Assessment / Caveats
+   5. Recommendations
+   6. Sources & Methodology Notes
+
+LENGTH GUIDELINES
+-------------------
+- Executive Summary: 150-300 words
+- Per major section: 200-500 words
+- Total synthesis: 800-2000 words (depending on query complexity)
+- Simple queries: aim for 800-1000 words
+- Complex multi-domain queries: aim for 1500-2000 words
+- Never exceed 3000 words — diminishing returns in readability
+
+TONE AND STYLE
+-----------------
+- Professional but accessible
+- Avoid jargon unless the user's query uses it
+- Define technical terms on first use
+- Active voice preferred over passive
+- Present tense for current facts, past tense for historical events
+- Conditional language for projections and speculative content

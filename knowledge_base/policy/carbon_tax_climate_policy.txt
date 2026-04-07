@@ -1,0 +1,96 @@
+CARBON TAX AND CLIMATE POLICY REFERENCE (2026)
+================================================
+
+OVERVIEW
+--------
+Global carbon pricing mechanisms cover approximately 23% of total greenhouse
+gas emissions as of 2026, up from 11% in 2020. The average carbon price
+across covered jurisdictions is approximately $35/ton CO2, though prices
+vary dramatically by region.
+
+MAJOR CARBON PRICING SYSTEMS
+------------------------------
+
+1. EU Emissions Trading System (EU ETS)
+   - Type: Cap-and-trade
+   - Price: €85-95/ton CO2 (Q1 2026)
+   - Coverage: Power generation, heavy industry, aviation (intra-EU), shipping
+   - Recent: Carbon Border Adjustment Mechanism (CBAM) transitional phase
+     (reporting) since October 2023; financial obligations from January 2026
+   - CBAM covers: Iron, steel, cement, aluminum, fertilizers, electricity, hydrogen
+
+2. California Cap-and-Trade (linked with Quebec)
+   - Price: $38-42/ton CO2 (Q1 2026)
+   - Coverage: Facilities emitting >25,000 tons CO2/year
+   - Sector: Power, industrial, transportation fuel suppliers
+
+3. China National ETS
+   - Type: Cap-and-trade (intensity-based)
+   - Price: ¥95-110/ton CO2 (~$13-15) (Q1 2026)
+   - Coverage: Power sector only (2,200+ entities)
+   - Expanding to: Cement, aluminum (expected 2026-2027)
+
+4. UK ETS
+   - Type: Cap-and-trade (post-Brexit, separate from EU)
+   - Price: £55-65/ton CO2 (Q1 2026)
+   - Coverage: Similar to EU ETS sectors
+
+5. Canada Federal Carbon Pricing
+   - Type: Carbon tax + output-based pricing
+   - Price: C$95/ton CO2 (2026, rising C$15/year)
+   - Coverage: Economy-wide
+   - Revenue: Returned as "Climate Action Incentive" payments to households
+
+GLOBAL EMISSIONS DATA (2025 estimates)
+-----------------------------------------
+Total global CO2 emissions: ~37.5 billion tons
+
+By country:
+  China: 11.9 billion tons (31.7%)
+  United States: 4.9 billion tons (13.1%)
+  India: 3.1 billion tons (8.3%)
+  EU-27: 2.7 billion tons (7.2%)
+  Russia: 1.8 billion tons (4.8%)
+  Japan: 1.0 billion tons (2.7%)
+  Rest of world: 12.1 billion tons (32.2%)
+
+By sector:
+  Power generation: 38%
+  Industry: 21%
+  Transport: 16%
+  Buildings: 10%
+  Agriculture: 11%
+  Other: 4%
+
+ECONOMIC IMPACT ON MANUFACTURING
+-----------------------------------
+Germany:
+  - Manufacturing contributes 19% of GDP
+  - Carbon costs add 3-8% to production costs for energy-intensive industries
+  - Steel: €50-80/ton cost increase from EU ETS
+  - Risk: Carbon leakage to non-carbon-priced jurisdictions
+  - Mitigation: Free allocation for trade-exposed sectors being phased out
+
+Japan:
+  - Manufacturing contributes 20% of GDP
+  - GX (Green Transformation) Strategy: ¥20 trillion ($135B) over 10 years
+  - Carbon pricing: Voluntary carbon credit market, mandatory system under debate
+  - Automotive impact: EV transition accelerated by implicit carbon costs
+
+India:
+  - Manufacturing contributes 17% of GDP
+  - No carbon tax currently; Perform Achieve Trade (PAT) energy efficiency scheme
+  - CBAM exposure: Indian steel/aluminum exporters to EU face new costs
+  - Estimated CBAM cost to Indian industry: $1.5-2.5 billion/year
+
+"JUST TRANSITION" PRINCIPLES
+-------------------------------
+Based on ILO Just Transition Guidelines and 2025 Paris Agreement updates:
+
+1. Social dialogue: Workers and unions must be included in transition planning
+2. Social protection: Unemployment benefits, retraining programs, early retirement
+3. Skills development: Funded retraining from fossil fuels to green economy jobs
+4. Local economic diversification: Investment in coal/oil-dependent communities
+5. Green job creation: Target 1:1 ratio of lost fossil jobs to new green jobs
+6. Revenue recycling: Carbon tax revenue returned to affected communities
+7. Timeline: Phased transitions over 10-20 years to avoid economic shock

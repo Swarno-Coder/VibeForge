@@ -1,0 +1,117 @@
+AI REGULATION COMPLIANCE REFERENCE — GLOBAL OVERVIEW (2026)
+=============================================================
+
+EXECUTIVE SUMMARY
+------------------
+This document provides a compliance reference for technology companies
+operating across multiple jurisdictions with AI-powered products or services.
+
+EUROPEAN UNION — AI ACT
+-------------------------
+Effective: Phased enforcement August 2024 - August 2026
+Scope: Any AI system placed on market or used in the EU
+
+Classification:
+  PROHIBITED (Article 5):
+    - Social scoring systems
+    - Real-time remote biometric identification in public (with narrow exceptions)
+    - Emotion recognition in workplace/education
+    - Predictive policing based on profiling
+    - Scraping facial images from internet for databases
+
+  HIGH RISK (Annex III):
+    - Biometric identification (non-real-time)
+    - Critical infrastructure management
+    - Education: admissions, assessment
+    - Employment: recruitment, promotion, termination decisions
+    - Essential services: credit scoring, insurance pricing
+    - Law enforcement: risk assessment tools
+    - Immigration: visa application assessments
+    - Justice: sentencing recommendation systems
+
+  LIMITED RISK:
+    - Chatbots: Must disclose AI interaction
+    - Deepfakes: Must label content as AI-generated
+    - Emotion recognition: Must inform subjects
+
+  MINIMAL RISK:
+    - Spam filters, AI-enhanced video games, etc.
+    - No specific requirements
+
+GPAI (General-Purpose AI) Models:
+  All GPAI: Must provide model cards, training data summaries, copyright policy
+  Systemic risk GPAI (>10^25 FLOP): Red-teaming, adversarial testing, incident reporting
+
+Penalties:
+  - Prohibited practices: €35M or 7% global turnover (whichever higher)
+  - High risk violations: €15M or 3% global turnover
+  - Incorrect information: €7.5M or 1% global turnover
+
+UNITED STATES — EXECUTIVE ORDERS AND SECTOR RULES
+----------------------------------------------------
+No comprehensive federal AI law. Framework based on:
+
+  Executive Order 14110 (October 2023):
+    - Dual-use foundation models >10^26 FLOP must report to Commerce Dept
+    - Red-team testing results required before deployment
+    - Watermarking of AI-generated government content
+
+  Sector-specific regulations:
+    - Healthcare: FDA guidance on AI/ML-based Software as Medical Device (SaMD)
+    - Finance: OCC, Federal Reserve guidance on AI model risk management
+    - Housing: Fair Housing Act applies to AI-powered tenant screening
+    - Employment: EEOC guidance on AI in hiring (disparate impact analysis)
+
+  State laws:
+    - Colorado AI Act (2024): Algorithmic discrimination protections
+    - NYC Local Law 144: Bias audits for automated employment decisions
+    - Illinois BIPA: Biometric data processing consent requirements
+    - California SB-892 (under debate): Frontier model safety requirements
+
+CHINA
+------
+  Interim Measures for Generative AI Services (August 2023):
+    - Content must align with "core socialist values"
+    - Training data must be legal and properly licensed
+    - Mandatory AI-generated content labeling
+    - User identity verification required
+
+  Algorithm Recommendation Regulations (March 2022):
+    - Algorithm registration with CAC required
+    - Transparency in algorithmic recommendation logic
+    - Opt-out mechanism for users
+
+  Deep Synthesis Regulations (January 2023):
+    - All AI-generated content must be labeled
+    - Service providers must verify user identity
+    - Real-name registration for deepfake creators
+
+  Data Security:
+    - Cross-border data transfer requires security assessment
+    - Critical information infrastructure operators: data localization
+
+BRAZIL — LGPD + AI BILL
+-------------------------
+  LGPD (General Data Protection Law):
+    - Consent-based data processing
+    - Right to explanation for automated decisions
+    - ANPD (National Data Protection Authority) enforcement
+
+  AI Bill (PL 2338/2023):
+    - Risk-based classification (similar to EU AI Act)
+    - Algorithmic impact assessment for high-risk systems
+    - Human oversight requirements
+    - Expected passage: 2026
+
+COMPLIANCE CHECKLIST FOR GLOBAL CTO
+--------------------------------------
+□ Classify all AI systems by jurisdiction and risk level
+□ Implement AI model cards and transparency documentation (EU requirement)
+□ Conduct bias audits for employment-related AI (US, EU, Brazil)
+□ Establish incident reporting process (EU GPAI requirement)
+□ Implement content labeling for AI-generated outputs (EU, China)
+□ Ensure data localization where required (China, sector-specific)
+□ Maintain algorithmic audit trail (EU high-risk, US sector-specific)
+□ Appoint AI governance officer / responsible AI team
+□ Conduct annual red-team testing for frontier models (US EO, EU GPAI)
+□ Prepare for AI Act full enforcement (August 2026)

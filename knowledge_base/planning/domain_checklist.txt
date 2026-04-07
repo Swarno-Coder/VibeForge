@@ -1,0 +1,59 @@
+DOMAIN-SPECIFIC DECOMPOSITION CHECKLISTS
+=========================================
+
+FINANCIAL / INVESTMENT ANALYSIS
+-------------------------------
+When the user query involves financial analysis or investment decisions:
+□ Assign a Market_Researcher to gather current pricing and volume data
+□ Assign a Financial_Analyst for valuation and projection modeling
+□ Assign a Risk_Assessor for downside scenario analysis
+□ Consider a Regulatory_Compliance_Analyst if cross-border investments involved
+□ Use google_search for real-time prices and recent earnings reports
+□ Set financial analysis agents to criticality 8-9 (high reasoning demand)
+
+TECHNOLOGY / ENGINEERING
+------------------------
+When the user query involves technology assessment or engineering tasks:
+□ Assign a Code_Generator if code output is expected (criticality 9-10)
+□ Assign an Architecture_Designer for system design questions
+□ Assign a Technical_Writer for documentation tasks
+□ Assign a Market_Researcher if competitive product analysis needed
+□ Consider security implications — assign a Risk_Assessor if relevant
+□ Technical agents should be criticality 7-10
+
+GEOPOLITICAL / POLICY ANALYSIS
+-------------------------------
+When the user query involves geopolitics, policy, or regulation:
+□ Assign separate regional analysts for each geography mentioned
+□ Assign a Geopolitical_Analyst for cross-regional synthesis
+□ Assign a Regulatory_Compliance_Analyst for legal frameworks
+□ Use google_search for latest diplomatic developments
+□ Set geopolitical agents to criticality 6-8
+□ Ensure independence: each regional analyst works on ONE region
+
+SCIENTIFIC / RESEARCH
+---------------------
+When the user query involves scientific research or academic analysis:
+□ Assign an Academic_Researcher per major topic area
+□ Assign a Data_Analyst for quantitative aspects
+□ Consider methodology review — conflicting studies need careful analysis
+□ Set research agents to criticality 6-8
+□ Do NOT assign google_search for well-established scientific facts
+
+ENERGY / SUSTAINABILITY
+------------------------
+When the user query involves energy, climate, or sustainability:
+□ Assign separate agents for each energy source or technology
+□ Assign an ESG_Analyst for sustainability metrics
+□ Assign a Financial_Analyst for cost projections and ROI
+□ Assign a Regulatory_Compliance_Analyst for government incentives
+□ Set energy technology agents to criticality 6-8
+
+CRISIS MANAGEMENT / EMERGENCY
+-------------------------------
+When the user query involves crisis response or emergency planning:
+□ Assign domain-specific experts for the crisis type
+□ Assign a Risk_Assessor for immediate threat assessment
+□ Assign a Regulatory_Compliance_Analyst for legal obligations
+□ Set all crisis agents to HIGH criticality (8-10) — time-sensitive
+□ Use google_search for real-time situational awareness

@@ -34,8 +34,13 @@ def main():
     # ── Create the shared ResourcePool ────────────────────────────────────
     pool = ResourcePool(clients)
 
+    # ── Initialize RAG Engine (BM25 + Vector + Hybrid) ────────────────────
+    from rag_engine import initialize_rag
+    initialize_rag()
+
     console.print("\n[bold green]Welcome to the Gemini Multi-Agent CLI![/bold green]")
     console.print(f"[dim]Resource Pool: {len(clients)} API keys × 4 models = {len(pool._slots)} slots[/dim]")
+    console.print("[dim]RAG Engine: BM25 (Planner) + Vector (Executor) + Hybrid (Judge)[/dim]")
     console.print("Type 'exit' or 'quit' to terminate.\n")
 
     while True:

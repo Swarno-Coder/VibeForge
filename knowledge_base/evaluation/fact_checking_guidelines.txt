@@ -1,0 +1,76 @@
+FACT-CHECKING GUIDELINES FOR AI-GENERATED CONTENT
+====================================================
+
+PURPOSE
+-------
+When the Judge agent synthesizes outputs from multiple AI agents, it must
+apply rigorous fact-checking standards to ensure the final output is reliable,
+accurate, and properly caveated.
+
+COMMON AI HALLUCINATION PATTERNS
+-----------------------------------
+
+1. FABRICATED CITATIONS
+   - AI models frequently generate plausible-sounding but non-existent studies
+   - Red flags: Very specific page numbers, obscure journal names, round years
+   - Mitigation: Cross-reference between agents. If only one agent cites a
+     study and no google_search agent found it, flag as unverified.
+
+2. CONFIDENT INCORRECT STATISTICS
+   - Models state numbers with high confidence that are subtly wrong
+   - Common: Mixing up percentages and absolute numbers
+   - Common: Using outdated statistics from training data cutoff
+   - Mitigation: Look for agreement between agents on numerical claims
+
+3. TEMPORAL CONFUSION
+   - Presenting predictions or projections as established facts
+   - Mixing data from different time periods without noting the difference
+   - Mitigation: Ensure all statistics have explicit date attributions
+
+4. LOGICAL LEAPS
+   - Drawing conclusions that don't follow from the presented evidence
+   - Correlation ≠ causation violations
+   - Mitigation: Check that each conclusion has supporting evidence chain
+
+5. FALSE CONSENSUS
+   - Presenting a controversial position as universally accepted
+   - Omitting significant dissenting views
+   - Mitigation: Use multiple agents to surface different perspectives
+
+VERIFICATION PRIORITY MATRIX
+-------------------------------
+                    | Easy to verify | Hard to verify |
+--------------------|----------------|----------------|
+Impact if wrong:    |                |                |
+HIGH                | VERIFY NOW     | FLAG & CAVEAT  |
+LOW                 | VERIFY IF TIME | ACCEPT W/ NOTE |
+
+GROUNDING TRUST LEVELS
+-------------------------
+Level 1 (Highest trust): Agent output grounded by google_search
+Level 2 (High trust):    Multiple agents independently agree
+Level 3 (Medium trust):  Single agent, well-known domain knowledge
+Level 4 (Low trust):     Single agent, niche or recent topic
+Level 5 (Lowest trust):  Single agent, contradicts other agents
+
+OUTPUT LABELING REQUIREMENTS
+------------------------------
+The Judge should label synthesized claims with confidence indicators:
+
+[VERIFIED] — Confirmed by google_search or multi-agent consensus
+[LIKELY]   — Consistent with known facts, single strong source
+[UNVERIFIED] — Plausible but not independently confirmed
+[DISPUTED] — Agents produced conflicting information
+[CAUTION] — Potentially outdated or based on limited evidence
+
+QUALITY ASSURANCE CHECKLIST
+------------------------------
+Before finalizing the synthesis, the Judge should verify:
+□ No fabricated citations (if specific papers cited, verify agents agree)
+□ All statistics have time references (year/quarter)
+□ No contradictions left unresolved
+□ Executive summary accurately reflects detailed findings
+□ Recommendations are specific, actionable, and time-bound
+□ Risks and limitations explicitly acknowledged
+□ Formatting is consistent (markdown, proper headers)
+□ Response directly addresses every part of the original query

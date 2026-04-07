@@ -1,0 +1,80 @@
+CYBERSECURITY INCIDENT RESPONSE FRAMEWORK (2026)
+==================================================
+
+EXECUTIVE OVERVIEW
+-------------------
+This document provides a comprehensive framework for cybersecurity incident
+response, based on NIST SP 800-61r3 and updated for the 2026 threat landscape.
+
+INCIDENT CLASSIFICATION
+-------------------------
+Severity Level 1 (CRITICAL): Active data exfiltration, ransomware deployment,
+  unauthorized access to crown jewel systems. Response time: 15 minutes.
+Severity Level 2 (HIGH): Confirmed breach, lateral movement detected,
+  credential compromise of privileged accounts. Response time: 1 hour.
+Severity Level 3 (MEDIUM): Suspicious network activity, phishing success
+  (non-privileged account), malware on isolated endpoint. Response time: 4 hours.
+Severity Level 4 (LOW): Failed intrusion attempt, policy violation,
+  vulnerability disclosure without active exploitation. Response time: 24 hours.
+
+RESPONSE PHASES
+----------------
+Phase 1 — DETECTION & ANALYSIS (0-2 hours)
+  - Activate SOC escalation procedures
+  - Preserve volatile evidence (memory dumps, network captures)
+  - Determine scope: affected systems, data types, geographic footprint
+  - Classify severity level based on initial findings
+  - Engage forensics team for evidence chain-of-custody
+
+Phase 2 — CONTAINMENT (2-8 hours)
+  - Short-term: Isolate affected systems (network segmentation)
+  - Disable compromised accounts and rotate credentials
+  - Implement emergency firewall rules and DNS sinkholes
+  - Long-term: Deploy patches, update detection signatures
+  - Document all containment actions with timestamps
+
+Phase 3 — ERADICATION (8-48 hours)
+  - Remove malware, rootkits, and persistence mechanisms
+  - Close vulnerability exploited for initial access
+  - Verify no remaining backdoors or C2 infrastructure
+  - Re-image compromised systems from known-good backups
+
+Phase 4 — RECOVERY (48 hours - 2 weeks)
+  - Restore systems from verified clean backups
+  - Monitor restored systems for re-compromise indicators
+  - Gradually lift containment measures
+  - Validate data integrity
+
+Phase 5 — POST-INCIDENT (2-4 weeks)
+  - Conduct lessons-learned review
+  - Update incident response playbooks
+  - Implement long-term security improvements
+  - Submit regulatory reports (within required timeframes)
+
+LEGAL DISCLOSURE REQUIREMENTS
+-------------------------------
+GDPR (EU): 72 hours to notify supervisory authority
+SEC (US): "Material" breaches must be disclosed in 8-K filing within 4 business days
+HIPAA (US healthcare): 60 days to notify affected individuals
+PCI-DSS: Notify card brands within 24-72 hours
+State breach notification laws: Varies by US state (typically 30-60 days)
+China PIPL: Immediately notify authorities; individuals "in a timely manner"
+Brazil LGPD: "Reasonable time" to notify ANPD
+
+STOCK PRICE IMPACT ANALYSIS
+-----------------------------
+Historical data on major breaches:
+- Equifax (2017): -35% in first month, recovered after 2 years
+- SolarWinds (2020): -23% in first week, recovery in 6 months
+- MOVEit/Progress Software (2023): -22% in 2 weeks, partial recovery
+- Average short-term impact: -7% to -15% for publicly traded companies
+- Companies with rapid, transparent disclosure recover 40% faster
+
+PR CRISIS COMMUNICATION BEST PRACTICES
+-----------------------------------------
+1. Acknowledge the incident within 24 hours (do not wait for full investigation)
+2. Provide regular updates (every 24-48 hours initially)
+3. Be specific about what happened and what you're doing
+4. Avoid legal jargon and blame-shifting
+5. Offer concrete remediation to affected customers
+6. CEO should be the face of the response (not just the CISO)

@@ -1,0 +1,87 @@
+UNIVERSAL BASIC INCOME AND WORKFORCE PARTICIPATION — RESEARCH SYNTHESIS
+=========================================================================
+
+OVERVIEW
+--------
+Universal Basic Income (UBI) remains one of the most debated economic policies
+of the 2020s. This document synthesizes findings from major pilot programs
+and academic studies through 2025.
+
+STUDIES SHOWING DECREASED WORK MOTIVATION
+-------------------------------------------
+
+Study 1: Finland UBI Experiment (2017-2018)
+  - Participants: 2,000 unemployed Finnish citizens
+  - Amount: €560/month unconditionally for 2 years
+  - Key finding: No significant increase in employment during trial period
+  - Employment effect: +0.4 percentage points (not statistically significant)
+  - Methodology: Randomized controlled trial by Kela (Social Insurance Institution)
+  - Limitation: Only tested with already-unemployed population
+  - Publication: "The Basic Income Experiment 2017-2018 in Finland" (2020)
+
+Study 2: Seattle-Denver Income Maintenance Experiments (SIME/DIME, 1971-1982)
+  - Participants: 4,800 low-income families
+  - Amount: Guaranteed income floor
+  - Key finding: Work hours decreased by 9% for husbands, 20% for wives
+  - Methodology: Randomized experiment with negative income tax
+  - Critics note: Cultural context of 1970s makes direct comparison difficult
+  - Publication: US Department of Health and Human Services (1983)
+
+Study 3: Iran Cash Transfer Program (2011-present)
+  - Scale: Universal cash transfer to 72 million Iranians
+  - Amount: ~$1.50/day/person (purchasing power adjusted)
+  - Key finding: Labor force participation decreased by 2-3 percentage points
+    among working-age adults. Effect concentrated in women and secondary earners.
+  - Methodology: Quasi-experimental, difference-in-differences analysis
+  - Publication: Salehi-Isfahani & Mostafavi-Dehzooei, World Development (2018)
+
+STUDIES SHOWING INCREASED ENTREPRENEURIAL ACTIVITY
+----------------------------------------------------
+
+Study 1: GiveDirectly Kenya (2016-ongoing)
+  - Participants: 20,000+ individuals across 245 villages
+  - Amount: $22.50/month for 12 years (long-term arm)
+  - Key finding: 30% increase in new business creation; 20% increase in
+    asset ownership. No reduction in labor supply.
+  - Methodology: Cluster-randomized controlled trial
+  - Additional: Recipients invested in livestock, farm inputs, small enterprises
+  - Publication: Banerjee et al., "Effects of a Universal Basic Income during 
+    the pandemic" (2022, NBER Working Paper)
+
+Study 2: Stockton SEED Program (2019-2021)
+  - Participants: 125 randomly selected residents
+  - Amount: $500/month for 24 months
+  - Key finding: Full-time employment INCREASED from 28% to 40% over 2 years.
+    Recipients used funds for stability that enabled job searching and entrepreneurship.
+  - Methodology: Randomized controlled trial by University of Pennsylvania
+  - Key detail: Many recipients started side businesses or freelance work
+  - Publication: West & Castro, "Preliminary Analysis" (2021)
+
+Study 3: Y Combinator / OpenResearch (2024-2025)
+  - Participants: 3,000 individuals across Texas and Illinois
+  - Amount: $1,000/month for 3 years
+  - Key finding: Recipients reported 15% higher rates of entrepreneurial activity.
+    Time spent on education/training increased 25%. Overall work hours decreased
+    by 1.3-1.4 hours/week (modest effect). Quality of work improved — more
+    participants moved from part-time/gig work to stable employment.
+  - Methodology: Largest US RCT on unconditional cash transfers
+  - Publication: OpenResearch preliminary results (2025)
+
+METHODOLOGICAL ANALYSIS
+-------------------------
+- RCT studies (Finland, Stockton, Y Combinator) provide strongest evidence
+- Quasi-experimental studies (Iran) are useful for scale but harder to isolate causation
+- Duration matters: Short trials (<2 years) may not capture long-term behavioral shifts
+- Amount matters: Small UBI supplements show different effects than subsistence-level transfers
+- Population selection: Testing on unemployed vs. general population yields different results
+- Sample sizes: Stockton (125) is too small for robust statistical conclusions
+- Hawthorne effect: Knowledge of being observed may alter behavior
+
+DATA-DRIVEN MIDDLE GROUND: HYBRID POLICY RECOMMENDATIONS
+----------------------------------------------------------
+1. Graduated UBI: Start with smaller amounts and increase if employment maintained
+2. Conditional enhancement: Base UBI + bonus for job training or education
+3. Regional variation: Urban areas may need different amounts than rural
+4. Duration: Long-term commitment (5+ years) needed for meaningful behavioral change
+5. Complementary policies: UBI works best alongside job training, childcare, healthcare
+6. Fiscal source: Carbon tax-funded UBI aligns environmental and economic goals

@@ -1,0 +1,67 @@
+PEROVSKITE SOLAR CELL TECHNOLOGY — STATE OF THE ART (2025-2026)
+================================================================
+
+OVERVIEW
+--------
+Perovskite solar cells (PSCs) represent the most promising next-generation
+photovoltaic technology. The term "perovskite" refers to the crystal structure
+ABX3, where typically A = methylammonium (MA) or formamidinium (FA),
+B = lead (Pb) or tin (Sn), and X = iodide (I), bromide (Br), or chloride (Cl).
+
+EFFICIENCY MILESTONES
+---------------------
+- 2012: 10.9% (first solid-state perovskite cell)
+- 2020: 25.5% (single junction, certified)
+- 2023: 26.1% (single junction, EPFL)
+- 2024: 26.7% (inverted architecture, LONGi Green Energy)
+- 2025 Q3: 27.1% (tandem-optimized single junction, KAIST research group)
+- 2025 Q4: 33.9% (perovskite-silicon tandem, Oxford PV commercial prototype)
+- 2026 Q1: 34.6% (perovskite-silicon tandem, Hanwha Q Cells lab record)
+
+For comparison, conventional silicon cells max out around 26.8% efficiency.
+
+MANUFACTURING COSTS (2026 estimates)
+------------------------------------
+- Traditional silicon panels: $0.20-0.25 per watt
+- Perovskite single-junction: $0.10-0.15 per watt (projected at scale)
+- Perovskite-silicon tandem: $0.22-0.30 per watt (early production)
+- Key advantage: perovskites can be solution-processed (printed like ink)
+  vs. silicon's energy-intensive crystal growth
+- Roll-to-roll manufacturing demonstrated at pilot scale by Saule Technologies
+
+STABILITY CHALLENGES
+--------------------
+The biggest barrier to commercialization remains long-term stability:
+- Moisture sensitivity: perovskite degrades when exposed to humidity
+  - Solution: encapsulation layers (ALD-deposited Al2O3, polymer barriers)
+  - 2025 breakthrough: self-healing perovskite composition (UNIST, Korea)
+- Heat degradation: performance drops above 85°C
+  - Inorganic cation substitution (CsPbI3) improves thermal stability
+- UV degradation: prolonged UV exposure causes phase segregation
+  - UV-filtering interlayers now standard in tandem designs
+
+CURRENT COMMERCIAL STATUS
+--------------------------
+- Oxford PV: First commercial perovskite-silicon tandem panels shipped in
+  2025 Q4 to select partners. 28.6% module efficiency (vs 22% for standard Si).
+- Saule Technologies (Poland): Flexible perovskite modules for BIPV
+  (building-integrated PV). 100MW production line under construction.
+- Swift Solar (US): Lightweight flexible perovskites for defense/aerospace.
+  DOE contract for $45M awarded in 2025.
+- CubicPV: Focus on tandem cells with 25-year warranty target.
+  Durability testing at 90% power retention after 2000 hours DH85.
+
+ENVIRONMENTAL CONCERNS
+-----------------------
+- Lead toxicity: Most efficient perovskites contain lead (Pb)
+  - Tin-based alternatives (MASnI3) reach ~14% efficiency but degrade faster
+  - Lead-sequestration layers developed by Northwestern University (2025)
+  - EU RoHS exemption for perovskite PV under review
+- Lifecycle analysis shows 3x lower carbon footprint vs silicon manufacturing
+
+EU ESG GOVERNMENT SUBSIDIES (2026)
+-----------------------------------
+- EU Green Deal Industrial Plan: €250 billion for clean tech manufacturing
+- Specific perovskite incentives under Horizon Europe: €180M for next-gen PV
+- Corporate tax credits for EU-manufactured perovskite modules: 15-25%
+- Carbon Border Adjustment Mechanism (CBAM) favors low-carbon PV manufacturing

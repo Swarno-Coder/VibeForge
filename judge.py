@@ -26,23 +26,44 @@ def evaluate_and_synthesize(
     Uses the ResourcePool with criticality=10 (highest) so the judge
     gets the best available model. Retries on failure.
 
+    RAG Integration: Uses Hybrid retrieval (BM25 + Vector with RRF) to inject
+    evaluation rubrics, fact-checking guidelines, and factual grounding into
+    the synthesis prompt. Pool interaction is NOT modified.
+
     Args:
         clients:       dict of {key_index: genai.Client}
         pool:          shared ResourcePool instance
         query:         original user query
         final_context: accumulated agent outputs
     """
+    # ── RAG: Retrieve evaluation guidelines + factual grounding ───────
+    from rag_engine import get_judge_rag, format_rag_context
+    rag_docs = get_judge_rag().retrieve(query, top_k=3)
+    rag_section = format_rag_context(rag_docs)
+
+    console.print(f"[dim]  📚 Judge RAG: retrieved {len(rag_docs)} docs "
+                  f"(hybrid BM25+Vector)[/dim]")
+
+    rag_note = ""
+    if rag_docs:
+        rag_note = f"""
+    === EVALUATION GUIDELINES & REFERENCE KNOWLEDGE ===
+    {rag_section}
+    === END REFERENCE KNOWLEDGE ===
+    """
+
     prompt = f"""
     You are the Final Synthesizer and Judge Agent. 
     The user originally asked this query:
     '{query}'
-    
+    {rag_note}
     A team of specialized AI agents have worked on this and generated the following combined work:
     --- CONTEXT START ---
     {final_context}
     --- CONTEXT END ---
     
     Your task is to review all the information provided by the agents, synthesize it, resolve any contradictions, and compile the final, polished answer to the user's query.
+    If evaluation guidelines were provided above, use them to assess quality and structure your output.
     Format your final output using Markdown for better readability.
     """
 

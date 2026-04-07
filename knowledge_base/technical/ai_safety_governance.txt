@@ -1,0 +1,93 @@
+AI SAFETY AND GOVERNANCE — GLOBAL LANDSCAPE (2026)
+=====================================================
+
+OVERVIEW
+--------
+As of 2026, AI governance has become one of the most critical policy areas
+globally. The rapid advancement of frontier AI models (GPT-5, Gemini 3.x,
+Claude 4, Llama-5) has intensified debates around safety, alignment, and
+regulatory frameworks.
+
+US AI REGULATION
+-----------------
+- Executive Order 14110 (Oct 2023): Requires safety testing for dual-use
+  foundation models exceeding 10^26 FLOP training compute.
+- NIST AI Risk Management Framework: Voluntary but widely adopted by industry.
+- Proposed AI Accountability Act (2025): Mandates algorithmic auditing for
+  high-risk AI systems in healthcare, finance, and criminal justice.
+- FTC enforcement actions: 12 cases against deceptive AI practices in 2025.
+- No comprehensive federal AI law as of Q1 2026; patchwork of state laws.
+- California SB-1047 (vetoed 2024) successor bill SB-892 under debate.
+
+EU AI ACT
+----------
+- Enforcement began in phases: August 2024 (prohibited practices),
+  August 2025 (GPAI rules), August 2026 (full enforcement of Annex III).
+- Risk-based classification:
+  - Unacceptable risk (banned): Social scoring, real-time biometric ID in public
+  - High risk: AI in healthcare diagnostics, credit scoring, recruitment
+  - Limited risk: Chatbots (transparency requirements)
+  - Minimal risk: Spam filters, etc. (no requirements)
+- General-Purpose AI (GPAI) rules:
+  - Transparency: Must disclose training data summaries
+  - Systemic risk models (>10^25 FLOP): Mandatory red-teaming, incident reporting
+- Penalties: Up to €35 million or 7% of global annual turnover
+- AI Office established in Brussels: 120+ staff for enforcement
+
+CHINA AI GOVERNANCE
+--------------------
+- Interim measures for Generative AI (Aug 2023): Content must align with
+  "core socialist values"
+- Deep Synthesis Regulations: Mandate labeling of AI-generated content
+- Algorithm Registration: 40+ algorithms registered with CAC as of 2026
+- Data security: Cross-border data transfer restrictions affect training data
+- State Council AI Development Plan: $15B annual R&D investment target
+- Approach: Industry-friendly regulation with strong content control
+
+UK AI SAFETY
+-------------
+- AI Safety Institute (AISI): Established 2023, expanded to 200 researchers
+- Pro-innovation approach: No separate AI law; sector-specific regulation
+- Frontier AI Taskforce merged into AISI
+- International AI Safety agreements: bilateral pacts with US, Japan, South Korea
+- Focus: Pre-deployment safety testing of frontier models
+
+INTERNATIONAL COORDINATION
+----------------------------
+- Bletchley Declaration (Nov 2023): 29 countries committed to AI safety
+- Seoul AI Summit (May 2024): 16 companies signed safety commitments
+- 2025 Paris AI Summit: Established Global AI Safety Network
+- 2026 UN AI Advisory Body: Recommended international governance framework
+- OECD AI Principles: Updated 2024, adopted by 46 countries
+- G7 Hiroshima AI Process: Code of conduct for AI developers
+
+OPEN-SOURCE AI DEBATE
+-----------------------
+Arguments FOR open-source model releases:
+- Democratizes access to AI capabilities
+- Enables independent safety research
+- Prevents monopolistic control
+- Accelerates innovation and reduces costs
+
+Arguments AGAINST unrestricted open-source:
+- Once released, cannot be recalled or patched
+- Enables misuse (bioweapons, cyber attacks, CSAM)
+- Difficult to enforce responsible use
+- "Model collapse" concerns with proliferation of AI-generated training data
+
+COMPLIANCE REQUIREMENTS FOR GLOBAL SAAS COMPANY
+-------------------------------------------------
+1. EU: AI Act registration, conformity assessment for high-risk systems
+2. US: Sector-specific (HIPAA for health AI, Fair Housing Act for housing AI)
+3. China: Algorithm registration, content moderation, data localization
+4. Brazil: LGPD compliance, AI Bill (PL 2338/2023) requires impact assessments
+5. Canada: AIDA (Artificial Intelligence and Data Act) passed 2025
+6. India: Digital Personal Data Protection Act 2023, no specific AI law yet
+
+MODEL SAFETY BENCHMARKS
+--------------------------
+- MMLU-Pro: Comprehensive knowledge + reasoning (GPT-5: 94.2%, Gemini 3: 93.8%)
+- HumanEval+: Code generation safety (focus on secure coding practices)
+- TruthfulQA: Factual accuracy and hallucination rates
+- BBQ: Bias benchmarks for social stereotypes
+- WMDP: Weapons of Mass Destruction Proxy for dangerous knowledge assessment
