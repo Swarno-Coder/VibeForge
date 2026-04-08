@@ -9,7 +9,7 @@ from google import genai
 from google.genai import types
 from rich.console import Console
 from rich.markdown import Markdown
-from resource_pool import ResourcePool
+from core.resource_pool import ResourcePool
 
 console = Console()
 
@@ -19,25 +19,12 @@ def evaluate_and_synthesize(
     pool: ResourcePool,
     query: str,
     final_context: str,
-):
+) -> tuple[str, str]:
     """
     Synthesize all agent outputs into a final polished answer.
-
-    Uses the ResourcePool with criticality=10 (highest) so the judge
-    gets the best available model. Retries on failure.
-
-    RAG Integration: Uses Hybrid retrieval (BM25 + Vector with RRF) to inject
-    evaluation rubrics, fact-checking guidelines, and factual grounding into
-    the synthesis prompt. Pool interaction is NOT modified.
-
-    Args:
-        clients:       dict of {key_index: genai.Client}
-        pool:          shared ResourcePool instance
-        query:         original user query
-        final_context: accumulated agent outputs
     """
     # ── RAG: Retrieve evaluation guidelines + factual grounding ───────
-    from rag_engine import get_judge_rag, format_rag_context
+    from core.rag_engine import get_judge_rag, format_rag_context
     rag_docs = get_judge_rag().retrieve(query, top_k=3)
     rag_section = format_rag_context(rag_docs)
 
@@ -98,7 +85,7 @@ def evaluate_and_synthesize(
 
                 console.print("\n[bold magenta]=== FINAL RESULT ===[/bold magenta]")
                 console.print(Markdown(response.text))
-                return
+                return response.text, slot.model
 
             except Exception as e:
                 last_error = e
@@ -112,3 +99,4 @@ def evaluate_and_synthesize(
                 pool.release(slot, "Judge_Synthesizer")
 
     console.print(f"[bold red]✘ Judge FAILED after {max_retries} attempts. Last error: {last_error}[/bold red]")
+    return "", ""

@@ -1,9 +1,33 @@
+# ─── Secrets ──────────────────────────────────────────────
 .env
-.env.local
-allocation_log.txt
 
-/venv
-/__pycache__
-**/__pycache__
-/chroma_data
+# ─── Python ───────────────────────────────────────────────
+__pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ─── Virtual Env ──────────────────────────────────────────
+venv/
+.venv/
+
+# ─── Data (runtime-generated) ─────────────────────────────
+data/
+allocation_log.txt
+model_results.txt
+
+# ─── IDE ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Streamlit ────────────────────────────────────────────
+.streamlit/
+
+# ─── OS ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

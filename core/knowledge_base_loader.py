@@ -10,13 +10,13 @@ Produces four lists of Document objects:
 """
 
 from pathlib import Path
-from rag_engine import Document
+from core.rag_engine import Document
 from rich.console import Console
 
 console = Console()
 
-# Root directory for knowledge base files
-KB_ROOT = Path(__file__).parent / "knowledge_base"
+# Root directory for knowledge base files (project root / knowledge_base)
+KB_ROOT = Path(__file__).parent.parent / "knowledge_base"
 
 # Chunk configuration
 CHUNK_SIZE = 500       # approximate tokens per chunk (words as proxy)
@@ -36,8 +36,6 @@ def _read_file(filepath: Path) -> str:
 def _chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> list[str]:
     """
     Split text into overlapping chunks by word count.
-    Each chunk is approximately chunk_size words, with overlap words
-    carried over from the previous chunk for context continuity.
     """
     words = text.split()
     if len(words) <= chunk_size:
@@ -50,18 +48,13 @@ def _chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = CHUNK_OV
         end = start + chunk_size
         chunk_words = words[start:end]
         chunks.append(" ".join(chunk_words))
-
-        # Advance by (chunk_size - overlap) to create overlap
         start += chunk_size - overlap
 
     return chunks
 
 
 def _load_category(category_dir: Path, category_name: str) -> list[Document]:
-    """
-    Load all .txt files from a category directory and chunk them.
-    Returns a list of Document objects with metadata.
-    """
+    """Load all .txt files from a category directory and chunk them."""
     docs = []
 
     if not category_dir.exists():

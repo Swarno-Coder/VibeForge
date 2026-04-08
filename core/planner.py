@@ -1,9 +1,6 @@
 """
 Planner — uses structured JSON schema output to break a user query
 into independent sub-tasks for concurrent agent execution.
-
-Uses all 4 API keys × best models for fallback on quota exhaustion.
-Model priority: Gemini 3.x → 2.5 → Gemma 4 (structured output support varies).
 """
 
 import json
@@ -15,15 +12,13 @@ from rich.console import Console
 
 console = Console()
 
-# Models that support structured JSON schema output, in priority order
-# Gemini models support response_schema; Gemma models may not — we try and fall back
 PLANNER_MODELS = [
-    "gemini-3.1-flash-lite-preview",   # Best: thinking + reasoning
-    "gemini-3-flash-preview",          # Very strong reasoning
-    "gemini-2.5-flash",                # Solid general purpose
-    "gemini-2.5-flash-lite",           # Good fallback
-    "gemma-4-31b-it",                  # Gemma 4 — may support structured out
-    "gemma-4-26b-a4b-it",             # Gemma 4 fallback
+    "gemini-3.1-flash-lite-preview",
+    "gemini-3-flash-preview",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemma-4-31b-it",
+    "gemma-4-26b-a4b-it",
 ]
 
 
@@ -47,29 +42,12 @@ class AgentPlan(BaseModel):
 def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
     """
     Break a user query into an AgentPlan using structured output.
-
-    Tries every (client, model) combination for resilience:
-      - Iterates models in priority order (best → weakest)
-      - For each model, tries all 4 API keys
-      - Falls back on 429 / quota / JSON errors / any errors
-
-    For Gemma models that don't support response_schema, falls back
-    to plain text generation with JSON instruction in the prompt.
-
-    RAG Integration: Uses BM25 retrieval over planning templates to provide
-    the planner with relevant task decomposition patterns and agent role catalogs.
-
-    Args:
-        clients: {1: genai.Client, 2: genai.Client, ...}
-        query:   the user's input query
     """
     # ── RAG: Retrieve relevant planning context via BM25 ──────────────
-    # Planner RAG is optional: if the RAG engine or its heavier dependencies
-    # are unavailable, continue planning without retrieval context.
     rag_docs = []
     rag_section = ""
     try:
-        from rag_engine import get_planner_rag, format_rag_context
+        from core.rag_engine import get_planner_rag, format_rag_context
         rag_docs = get_planner_rag().retrieve(query, top_k=3)
         rag_section = format_rag_context(rag_docs)
         console.print(f"[dim]  📚 Planner RAG: retrieved {len(rag_docs)} relevant planning docs[/dim]")
@@ -90,7 +68,6 @@ def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
     Use the reference knowledge above (if provided) to inform your planning decisions, agent roles, criticality scoring, and decomposition strategy.
     """
 
-    # JSON-only prompt for models that don't support response_schema
     json_prompt = prompt + """
     
     IMPORTANT: You MUST respond with ONLY valid JSON in this exact schema, nothing else:
@@ -118,7 +95,6 @@ def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
                 is_gemma = model in gemma_models
 
                 if is_gemma:
-                    # Gemma: use plain text with JSON instruction
                     response = client.models.generate_content(
                         model=model,
                         contents=json_prompt,
@@ -127,7 +103,6 @@ def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
                         ),
                     )
                 else:
-                    # Gemini: use native structured output
                     response = client.models.generate_content(
                         model=model,
                         contents=prompt,
@@ -139,9 +114,7 @@ def build_plan(clients: dict[int, genai.Client], query: str) -> AgentPlan:
 
                 raw_text = response.text.strip()
 
-                # For Gemma, extract JSON from possible markdown fences
                 if is_gemma and raw_text.startswith("```"):
-                    # Strip ```json ... ``` wrapper
                     lines = raw_text.split("\n")
                     json_lines = []
                     in_block = False

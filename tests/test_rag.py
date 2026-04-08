@@ -10,8 +10,8 @@ Tests:
   6. Allocation log integrity (verify pool logic unchanged)
 
 Usage:
-  python test_rag.py              # Run all unit tests
-  python test_rag.py --e2e        # Run end-to-end pipeline test (requires API keys)
+  python -m tests.test_rag           # Run all unit tests
+  python -m tests.test_rag --e2e     # Run end-to-end pipeline test (requires API keys)
 """
 
 import sys
@@ -19,7 +19,7 @@ import os
 import time
 
 # Ensure project root is on path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from rich.console import Console
 from rich.table import Table
@@ -51,7 +51,7 @@ def record(test_name: str, success: bool, detail: str = ""):
 def test_knowledge_base_loading():
     console.print("\n[bold cyan]TEST 1: Knowledge Base Loading & Chunking[/bold cyan]")
 
-    from knowledge_base_loader import load_knowledge_base
+    from core.knowledge_base_loader import load_knowledge_base
 
     planning, technical, evaluation, policy = load_knowledge_base()
 
@@ -86,7 +86,7 @@ def test_knowledge_base_loading():
 def test_bm25_retrieval(planning_docs):
     console.print("\n[bold cyan]TEST 2: BM25 Retriever (Planner Stage)[/bold cyan]")
 
-    from rag_engine import BM25Retriever
+    from core.rag_engine import BM25Retriever
 
     bm25 = BM25Retriever()
     bm25.add_documents(planning_docs)
@@ -140,7 +140,7 @@ def test_bm25_retrieval(planning_docs):
 def test_vector_retrieval(technical_docs, policy_docs):
     console.print("\n[bold cyan]TEST 3: Vector Retriever (Executor Stage)[/bold cyan]")
 
-    from rag_engine import VectorRetriever
+    from core.rag_engine import VectorRetriever
 
     vector = VectorRetriever(collection_name="test_executor")
     all_docs = technical_docs + policy_docs
@@ -211,7 +211,7 @@ def test_vector_retrieval(technical_docs, policy_docs):
 def test_hybrid_retrieval(evaluation_docs, technical_docs, policy_docs):
     console.print("\n[bold cyan]TEST 4: Hybrid Retriever (Judge Stage)[/bold cyan]")
 
-    from rag_engine import HybridRetriever, BM25Retriever, VectorRetriever
+    from core.rag_engine import HybridRetriever, BM25Retriever, VectorRetriever
 
     hybrid = HybridRetriever(
         bm25=BM25Retriever(),
@@ -271,7 +271,7 @@ def test_hybrid_retrieval(evaluation_docs, technical_docs, policy_docs):
 def test_rag_context_formatting():
     console.print("\n[bold cyan]TEST 5: RAG Context Formatting[/bold cyan]")
 
-    from rag_engine import format_rag_context, Document
+    from core.rag_engine import format_rag_context, Document
 
     docs = [
         Document(content="Test content one", metadata={"source": "test1.txt", "category": "technical"}, score=0.85),
@@ -312,8 +312,8 @@ def test_rag_context_formatting():
 def test_singleton_initialization():
     console.print("\n[bold cyan]TEST 6: RAG Singleton Initialization[/bold cyan]")
 
-    from rag_engine import initialize_rag, get_planner_rag, get_executor_rag, get_judge_rag
-    from rag_engine import BM25Retriever, VectorRetriever, HybridRetriever
+    from core.rag_engine import initialize_rag, get_planner_rag, get_executor_rag, get_judge_rag
+    from core.rag_engine import BM25Retriever, VectorRetriever, HybridRetriever
 
     initialize_rag()
 
@@ -360,12 +360,12 @@ def test_e2e_pipeline():
     from dotenv import load_dotenv
     load_dotenv()
 
-    from llm import get_clients
-    from resource_pool import ResourcePool
-    from planner import build_plan
-    from executor import execute_plan
-    from judge import evaluate_and_synthesize
-    from rag_engine import initialize_rag
+    from core.llm import get_clients
+    from core.resource_pool import ResourcePool
+    from core.planner import build_plan
+    from core.executor import execute_plan
+    from core.judge import evaluate_and_synthesize
+    from core.rag_engine import initialize_rag
 
     try:
         clients = get_clients()

@@ -5,3 +5,6 @@ python-dotenv
 requests
 chromadb
 sentence-transformers
+fastapi
+uvicorn[standard]
+streamlit
