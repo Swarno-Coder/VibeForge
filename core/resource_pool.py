@@ -28,13 +28,6 @@ from rich.table import Table
 console = Console()
 
 # ─── Model Tiers (best → lightest) ──────────────────────────────────────────
-# Each entry: (model_name, rate_limit_per_key_per_minute)
-#
-# Tier 0: Gemini 3.x — highest capability (thinking, reasoning, agentic)
-# Tier 1: Gemini 2.5 — strong general purpose
-# Tier 2: Gemma 4    — thinking + tool calling, good rate limits
-# Tier 3: Gemma 3    — highest rate limits, repetitive / low-intelligence tasks
-
 MODEL_TIERS = [
     # Tier 0 — Gemini 3.x (Criticality 9-10)
     [
@@ -103,10 +96,6 @@ class ResourcePool:
     """
 
     def __init__(self, clients: dict[int, genai.Client]):
-        """
-        Args:
-            clients: {1: genai.Client, 2: genai.Client, 3: genai.Client, 4: genai.Client}
-        """
         # Build all slots: 4 keys × 12 models = 48 slots
         self._slots: list[ResourceSlot] = []
         for key_idx, client in clients.items():
@@ -150,17 +139,6 @@ class ResourcePool:
     # ─── Core: Acquire ────────────────────────────────────────────────────────
 
     def acquire(self, agent_name: str, criticality: int) -> Optional[ResourceSlot]:
-        """
-        Block on semaphore until a slot is free, then find the best slot
-        matching the agent's criticality tier.  Logs ALLOCATE in HashMap.
-
-        Tier traversal order:
-          - Start at the tier matching criticality
-          - Fall through to lower tiers (higher index)
-          - Then wrap to higher tiers (lower index) if needed
-
-        Returns ResourceSlot on success, None if nothing available after timeout.
-        """
         acquired = self._semaphore.acquire(timeout=120)
         if not acquired:
             console.print(f"[bold red]Semaphore timeout for {agent_name}[/bold red]")
@@ -171,7 +149,6 @@ class ResourcePool:
         num_tiers = len(MODEL_TIERS)
 
         with self._map_lock:
-            # Try tiers: preferred first, then downward, then upward
             tier_order = (
                 list(range(start_tier, num_tiers)) +
                 list(range(0, start_tier))
@@ -180,14 +157,12 @@ class ResourcePool:
             for tier_idx in tier_order:
                 for slot in self._slots:
                     if slot.tier == tier_idx and not slot.busy:
-                        # Check blacklist
                         if slot.slot_id in self._blacklist:
                             if now < self._blacklist[slot.slot_id]:
-                                continue  # still blacklisted
+                                continue
                             else:
-                                del self._blacklist[slot.slot_id]  # expired
+                                del self._blacklist[slot.slot_id]
 
-                        # ── ALLOCATE ──
                         slot.busy = True
                         self._allocation_map[slot.slot_id] = {
                             "agent": agent_name,
@@ -201,7 +176,6 @@ class ResourcePool:
                         self._log_event("ALLOCATE", agent_name, slot)
                         return slot
 
-            # Edge case: all non-blacklisted slots taken within semaphore window
             self._semaphore.release()
             console.print(
                 f"[bold yellow]No suitable slot for {agent_name} "
@@ -212,26 +186,22 @@ class ResourcePool:
     # ─── Core: Release ────────────────────────────────────────────────────────
 
     def release(self, slot: ResourceSlot, agent_name: str):
-        """Free the slot. Logs DEALLOCATE in HashMap. Releases semaphore."""
         with self._map_lock:
             slot.busy = False
             if slot.slot_id in self._allocation_map:
                 del self._allocation_map[slot.slot_id]
             self._log_event("DEALLOCATE", agent_name, slot)
-
         self._semaphore.release()
 
     # ─── Blacklist a slot temporarily ─────────────────────────────────────────
 
     def blacklist_slot(self, slot: ResourceSlot):
-        """Mark a slot as temporarily unusable (e.g. after 429 / error)."""
         with self._map_lock:
             self._blacklist[slot.slot_id] = time.time() + self._blacklist_ttl
 
     # ─── HashMap: live allocation table ───────────────────────────────────────
 
     def print_allocation_table(self):
-        """Pretty-print the current HashMap allocation state."""
         with self._map_lock:
             if not self._allocation_map:
                 console.print("[dim]  (no active allocations)[/dim]")
@@ -265,14 +235,36 @@ class ResourcePool:
             console.print(table)
 
     def get_allocation_snapshot(self) -> dict:
-        """Return a copy of the current HashMap."""
         with self._map_lock:
             return dict(self._allocation_map)
+
+    # ─── Status getters for API/UI ────────────────────────────────────────────
+
+    def get_pool_status(self) -> dict:
+        """Return pool status dict for API/UI consumption."""
+        with self._map_lock:
+            busy_count = sum(1 for s in self._slots if s.busy)
+            blacklisted_count = len([
+                sid for sid, exp in self._blacklist.items()
+                if time.time() < exp
+            ])
+            return {
+                "total_slots": len(self._slots),
+                "busy_slots": busy_count,
+                "free_slots": len(self._slots) - busy_count,
+                "blacklisted_slots": blacklisted_count,
+                "active_allocations": len(self._allocation_map),
+                "allocation_map": dict(self._allocation_map),
+            }
+
+    def get_event_log(self) -> list[dict]:
+        """Return a copy of the full event log for API/UI."""
+        with self._log_lock:
+            return list(self._event_log)
 
     # ─── Event log ────────────────────────────────────────────────────────────
 
     def _log_event(self, action: str, agent_name: str, slot: ResourceSlot):
-        """Append to event log (and print to console)."""
         tier_labels = {0: "Gemini3.x", 1: "Gemini2.5", 2: "Gemma4", 3: "Gemma3"}
         event = {
             "time": time.strftime("%H:%M:%S"),
@@ -298,7 +290,6 @@ class ResourcePool:
         )
 
     def save_log_to_file(self, path: str = "allocation_log.txt"):
-        """Persist the full event log to disk."""
         tier_labels = {0: "Gemini3.x", 1: "Gemini2.5", 2: "Gemma4", 3: "Gemma3"}
         with self._log_lock:
             with open(path, "w", encoding="utf-8") as f:
@@ -319,11 +310,6 @@ class ResourcePool:
     # ─── Blacklist ALL keys for a given model ─────────────────────────────────
 
     def blacklist_model(self, model_name: str):
-        """
-        On quota error, blacklist ALL (key, model) combos for this model.
-        This prevents wasting retries cycling through keys when the model
-        itself is quota-exhausted across all keys.
-        """
         with self._map_lock:
             expiry = time.time() + self._blacklist_ttl
             for slot in self._slots:
@@ -340,39 +326,29 @@ class ResourcePool:
         self,
         agent,
         max_retries: int = 12,
+        agent_outputs: list | None = None,
     ) -> str:
         """
         Execute an agent task with robust retry + tier demotion logic.
 
-        Strategy:
-          1. Start at the tier matching the agent's criticality
-          2. On failure, blacklist the failed slot (or entire model on quota)
-          3. After 2 consecutive failures on the same tier → DEMOTE to next tier
-          4. Keeps demoting through Gemini 2.5 → Gemma 4 → Gemma 3
-          5. The job WILL get done somehow — Gemma 3 has 30rpm per key
-
-        12 retries provides headroom to cascade through all 4 tiers:
-          - Up to 3 attempts on Tier 0 (Gemini 3.x)
-          - Up to 3 attempts on Tier 1 (Gemini 2.5)
-          - Up to 3 attempts on Tier 2 (Gemma 4)
-          - Up to 3 attempts on Tier 3 (Gemma 3)
+        Args:
+            agent_outputs: Optional list to append per-agent result dicts
+                           for API/UI consumption.
         """
         agent_name = agent.name
         original_criticality = getattr(agent, "criticality", 5)
         effective_criticality = original_criticality
         last_error = None
 
-        # Tier demotion tracking
-        tier_fail_counts: dict[int, int] = {}  # tier_index → consecutive failure count
-        FAILURES_BEFORE_DEMOTE = 2  # demote after 2 failures on same tier
+        tier_fail_counts: dict[int, int] = {}
+        FAILURES_BEFORE_DEMOTE = 2
         num_tiers = len(MODEL_TIERS)
 
-        # Map effective criticality to tier for demotion
         tier_crit_map = {
-            0: 9,   # Tier 0 → crit 9+
-            1: 7,   # Tier 1 → crit 7-8
-            2: 4,   # Tier 2 → crit 4-6
-            3: 1,   # Tier 3 → crit 1-3
+            0: 9,
+            1: 7,
+            2: 4,
+            3: 1,
         }
 
         for attempt in range(1, max_retries + 1):
@@ -383,7 +359,6 @@ class ResourcePool:
                     f"(attempt {attempt}/{max_retries}, eff_crit={effective_criticality}), "
                     f"waiting...[/bold yellow]"
                 )
-                # If no slot at all, force demote to lowest tier
                 if effective_criticality > 1:
                     effective_criticality = 1
                     console.print(
@@ -394,9 +369,6 @@ class ResourcePool:
                 continue
 
             try:
-                # Build tools — only attach google_search on stable Gemini 2.5
-                # models. Preview models (3.x) and Gemma don't support grounding
-                # reliably and it burns extra quota for no benefit.
                 wants_search = "google_search" in agent.tools_required
                 stable_grounding_models = {
                     "gemini-2.5-flash", "gemini-2.5-flash-lite",
@@ -414,7 +386,6 @@ class ResourcePool:
                     f"Your Mission: {agent.task}\n"
                     f"Complete your mission thoroughly."
                 )
-                # If agent wants search but model can't ground, hint in prompt
                 if wants_search and not can_ground:
                     prompt += (
                         "\n\nNote: You do not have access to a live search tool. "
@@ -431,9 +402,6 @@ class ResourcePool:
                     f"→eff={effective_criticality}][/dim]"
                 )
 
-                # Direct generate_content call — identical to curl behavior.
-                # IMPORTANT: Do NOT use client.chats.create() which makes extra
-                # API calls for session management and burns quota faster.
                 response = slot.client.models.generate_content(
                     model=slot.model,
                     contents=prompt,
@@ -448,6 +416,20 @@ class ResourcePool:
                     f"(via KEY{slot.key_index}/{slot.model}, {tier_label}) ---\n"
                     f"{response.text}"
                 )
+
+                # Collect per-agent output for API/UI
+                if agent_outputs is not None:
+                    agent_outputs.append({
+                        "agent_name": agent_name,
+                        "content": response.text,
+                        "model": slot.model,
+                        "tier": slot.tier,
+                        "tier_label": tier_label,
+                        "key_index": slot.key_index,
+                        "criticality": original_criticality,
+                        "attempts": attempt,
+                    })
+
                 demote_note = ""
                 if slot.tier != _criticality_to_start_tier(original_criticality):
                     demote_note = f" [demoted from Tier {_criticality_to_start_tier(original_criticality)}]"
@@ -478,18 +460,14 @@ class ResourcePool:
                 )
 
                 if is_quota:
-                    # Blacklist ALL keys for this model — quota is model-level
                     self.blacklist_model(slot.model)
                 else:
-                    # Blacklist just this (key, model) slot
                     self.blacklist_slot(slot)
 
-                # ─── Tier demotion logic ──────────────────────────────
                 failed_tier = slot.tier
                 tier_fail_counts[failed_tier] = tier_fail_counts.get(failed_tier, 0) + 1
 
                 if tier_fail_counts[failed_tier] >= FAILURES_BEFORE_DEMOTE:
-                    # Demote: lower the effective criticality to target next tier
                     next_tier = failed_tier + 1
                     if next_tier < num_tiers:
                         effective_criticality = tier_crit_map[next_tier]

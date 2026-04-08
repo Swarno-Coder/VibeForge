@@ -1,39 +1,38 @@
 """
 Executor — dispatches agent tasks through the ResourcePool.
 
-Agents are sorted by criticality (highest first) and submitted to a
-ThreadPoolExecutor. The ResourcePool handles model selection, semaphore-
-based mutual exclusion, HashMap logging, and retry logic.
-
 RAG Integration: Before dispatching, each agent's task is enriched with
-semantically relevant knowledge from the Vector RAG (ChromaDB + sentence-transformers).
-This happens BEFORE pool interaction — the ResourcePool is NOT modified.
+semantically relevant knowledge from the Vector RAG.
 """
 
 from google import genai
-from planner import AgentPlan
-from resource_pool import ResourcePool
+from core.planner import AgentPlan
+from core.resource_pool import ResourcePool
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from rich.console import Console
 
 console = Console()
 
 
-def execute_plan(clients: dict[int, genai.Client], plan: AgentPlan, pool: ResourcePool) -> str:
+def execute_plan(
+    clients: dict[int, genai.Client],
+    plan: AgentPlan,
+    pool: ResourcePool,
+    agent_outputs: list | None = None,
+) -> str:
     """
     Execute all agents in the plan concurrently via the ResourcePool.
-
-    RAG Integration: Each agent's task text is enriched with semantically
-    relevant documents from the Vector retriever before being submitted to
-    the pool's execute_with_retry(). This adds domain-specific grounding
-    without touching any pool logic.
 
     Args:
         clients: dict of {key_index: genai.Client}
         plan:    the AgentPlan from the planner
         pool:    shared ResourcePool instance
+        agent_outputs: optional list to collect per-agent results for API/UI
     """
     accumulated_context = ""
+
+    if agent_outputs is None:
+        agent_outputs = []
 
     # Sort agents by criticality (highest first) → priority queue
     sorted_agents = sorted(
@@ -43,7 +42,7 @@ def execute_plan(clients: dict[int, genai.Client], plan: AgentPlan, pool: Resour
     )
 
     # ── RAG: Enrich each agent's task with Vector-retrieved knowledge ──
-    from rag_engine import get_executor_rag, format_rag_context
+    from core.rag_engine import get_executor_rag, format_rag_context
     retriever = get_executor_rag()
 
     console.print("\n[bold blue]═══ Enriching Agents with RAG Context ═══[/bold blue]")
@@ -80,19 +79,16 @@ def execute_plan(clients: dict[int, genai.Client], plan: AgentPlan, pool: Resour
     with ThreadPoolExecutor(max_workers=len(pool._slots)) as executor:
         for agent in sorted_agents:
             futures.append(
-                executor.submit(pool.execute_with_retry, agent, 12)
+                executor.submit(pool.execute_with_retry, agent, 12, agent_outputs)
             )
 
         with console.status("[bold cyan]Agents executing across resource pool...[/bold cyan]"):
             for future in as_completed(futures):
                 accumulated_context += future.result()
-                # Print live allocation snapshot after each completion
                 pool.print_allocation_table()
 
     console.print("\n[bold blue]═══ All Agents Finished ═══[/bold blue]")
 
-    # Save full allocation log to file
     pool.save_log_to_file()
 
     return accumulated_context
-
