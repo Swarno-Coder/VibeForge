@@ -8,3 +8,6 @@ sentence-transformers
 fastapi
 uvicorn[standard]
 streamlit
+torchvision
+markdown
+pyarrow

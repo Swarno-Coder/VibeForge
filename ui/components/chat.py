@@ -3,6 +3,16 @@ Chat Component — Chat session UI with message display and history.
 """
 
 import streamlit as st
+import markdown as md
+import html as html_module
+
+
+def _md_to_html(text: str) -> str:
+    """Convert markdown text to HTML for safe embedding inside divs."""
+    return md.markdown(
+        text,
+        extensions=["tables", "fenced_code", "nl2br", "sane_lists"],
+    )
 
 
 def init_chat_state():
@@ -25,51 +35,50 @@ def render_chat_messages():
         model_used = msg.get("model_used", "")
 
         if role == "user":
+            escaped = html_module.escape(content)
             st.markdown(f"""
             <div class="chat-user">
-                <div style="font-size: 0.78rem; color: #818cf8; font-weight: 600; margin-bottom: 0.3rem;">
+                <div style="font-size: 0.85rem; color: #818cf8; font-weight: 600; margin-bottom: 0.3rem;">
                     👤 You
                 </div>
-                <div style="font-size: 0.95rem;">{content}</div>
+                <div style="font-size: 1rem; line-height: 1.6;">{escaped}</div>
             </div>
             """, unsafe_allow_html=True)
         else:
-            cache_badge = ""
+            # Build header meta badges
+            meta_parts = []
             if cached:
                 cache_level = msg.get("cache_level", "")
                 similarity = msg.get("cache_similarity", 1.0)
-                cache_badge = f"""
-                <span style="background: rgba(16, 185, 129, 0.15); color: #34d399; 
-                       padding: 2px 8px; border-radius: 12px; font-size: 0.72rem; font-weight: 600;
-                       margin-left: 0.5rem;">
-                    ⚡ CACHED ({cache_level}, {similarity:.2f})
-                </span>
-                """
-
-            timing_info = ""
+                meta_parts.append(
+                    f'<span class="chat-badge chat-badge-cache">'
+                    f'⚡ CACHED ({html_module.escape(cache_level)}, {similarity:.2f})'
+                    f'</span>'
+                )
             if duration > 0:
-                timing_info = f"""
-                <span style="font-size: 0.75rem; color: #475569; margin-left: 0.5rem;">
-                    ⏱ {duration:.1f}s
-                </span>
-                """
-
-            model_info = ""
+                meta_parts.append(
+                    f'<span class="chat-meta">⏱ {duration:.1f}s</span>'
+                )
             if model_used:
-                model_info = f"""
-                <span style="font-size: 0.75rem; color: #475569; margin-left: 0.5rem;">
-                    via {model_used}
-                </span>
-                """
+                meta_parts.append(
+                    f'<span class="chat-meta">via {html_module.escape(model_used)}</span>'
+                )
+
+            meta_html = " ".join(meta_parts)
+
+            # Convert markdown content → HTML
+            content_html = _md_to_html(content)
 
             st.markdown(f"""
             <div class="chat-assistant">
-                <div style="font-size: 0.78rem; color: #06b6d4; font-weight: 600; margin-bottom: 0.3rem;">
-                    🧠 VibeForge AI {cache_badge} {timing_info} {model_info}
+                <div class="chat-assistant-header">
+                    🧠 VibeForge AI {meta_html}
+                </div>
+                <div class="chat-assistant-content">
+                    {content_html}
                 </div>
             </div>
             """, unsafe_allow_html=True)
-            st.markdown(content)
 
 
 def add_user_message(query: str):

@@ -80,11 +80,11 @@ def render_metrics_dashboard(pool_status: dict, cache_stats: dict, storage_info:
         cache_data = {
             "Metric": ["L1 Entries", "L2 Entries", "L1 Hits", "L2 Hits", "Misses", "Hit Rate"],
             "Value": [
-                cache_stats.get("l1_entries", 0),
-                cache_stats.get("l2_entries", 0),
-                cache_stats.get("l1_hits", 0),
-                cache_stats.get("l2_hits", 0),
-                cache_stats.get("misses", 0),
+                str(cache_stats.get("l1_entries", 0)),
+                str(cache_stats.get("l2_entries", 0)),
+                str(cache_stats.get("l1_hits", 0)),
+                str(cache_stats.get("l2_hits", 0)),
+                str(cache_stats.get("misses", 0)),
                 f"{cache_stats.get('hit_rate_pct', 0):.1f}%",
             ],
         }
